@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/usuario.route.js';
+import cadastroRoutes from './routes/cadastro.route.js';
 dotenv.config();
 
 
@@ -24,3 +25,4 @@ app.listen(3000, () => {
 
 //importar as rotas
 app.use('/api/usuario', userRoutes);
+app.use('/api/cadastro', cadastroRoutes);
