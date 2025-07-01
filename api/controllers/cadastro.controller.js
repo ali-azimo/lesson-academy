@@ -1,6 +1,7 @@
 import User from "../models/usuario.model.js";
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { errorHandler } from "../utils/erros.js";
 
 export const cadastro = async(req, res, next) => {
     const { username, email, password } = req.body;
@@ -14,7 +15,7 @@ export const cadastro = async(req, res, next) => {
         await newUser.save();
         res.status(201).json('Usuario criado com sucesso!');
     } catch (error) {
-        next(error);
+        next(errorHandler(500, 'Erro ao criar o usuário'));
     }
 
 };

@@ -26,3 +26,16 @@ app.listen(3000, () => {
 //importar as rotas
 app.use('/api/usuario', userRoutes);
 app.use('/api/cadastro', cadastroRoutes);
+
+
+//Erros para o servidor
+app.use((err, req, res, next) => {
+    const errorStatus = err.status || 500;
+    const errorMessage = err.message || "Algo deu errado!";
+    return res.status(errorStatus).json({
+        success: false,
+        errorStatus,
+        errorMessage,
+        stack: err.stack,
+    });
+}); 
